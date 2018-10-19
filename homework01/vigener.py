@@ -53,5 +53,34 @@ def decrypt_vigenere(ciphertext, keyword):
     >>> decrypt_vigenere("LXFOPVEFRNHR", "LEMON")
     'ATTACKATDAWN'
     """
-    # PUT YOUR CODE HERE
+    j = 0
+    plaintext = ""
+    for i in ciphertext:
+        if ord('a') <= ord(keyword[j]) <= ord('z'):
+            numb = ord(keyword[j]) - 122 + 25
+        elif ord('A') <= ord(keyword[j]) <= ord('Z'):
+            numb = ord(keyword[j]) - 90 + 25
+        i = ord(i)
+        if (ord('a') <= i <= ord('z')):
+            i -= numb
+            if i < 97:
+                i -= 97
+                a = 123 + i
+                a = chr(a)
+            else:
+                a = chr(i)
+        elif (ord('A') <= i <= ord('Z')):
+            i -= numb
+            if i < 65:
+                i -= 65
+                a = 91 + i
+                a = chr(a)
+            else:
+                a = chr(i)
+        else:
+            a = chr(i)
+        plaintext += a
+        j += 1
+        if j > len(keyword) - 1:
+            j = 0
     return plaintext
