@@ -50,7 +50,11 @@ def multiplicative_inverse(e, phi):
     >>> multiplicative_inverse(7, 40)
     23
     """
-    # PUT YOUR CODE HERE
+    d = e % phi
+    for x in range(1, phi):
+        if (e * x) % phi == 1:
+            return x
+    return d
     pass
 
 
