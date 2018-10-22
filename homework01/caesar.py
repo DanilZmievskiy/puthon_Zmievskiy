@@ -21,10 +21,7 @@ def encrypt_caesar(plaintext):
                 i = i - ord('Z') + 2 + ord('A')
             else:
                 i += 3
-            a = chr(i)
-        else:
-            a = chr(i)
-        ciphertext += a
+        ciphertext += chr(i)
     return ciphertext
 
 
@@ -51,8 +48,5 @@ def decrypt_caesar(ciphertext):
                 i = i - ord('C') + 2 + ord('X')
             else:
                 i -= 3
-            a = chr(i)
-        else:
-            a = chr(i)
-        plaintext += a
+        plaintext += chr(i)
     return plaintext
