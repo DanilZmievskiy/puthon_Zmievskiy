@@ -21,7 +21,6 @@ def is_prime(n):
             return False
         else:
             return True
-    pass
 
 
 def gcd(a, b):
@@ -39,7 +38,6 @@ def gcd(a, b):
         else:
             b = b - a
     return a
-    pass
 
 
 def multiplicative_inverse(e, phi):
@@ -55,7 +53,6 @@ def multiplicative_inverse(e, phi):
         if (e * x) % phi == 1:
             return x
     return d
-    pass
 
 
 def generate_keypair(p, q):
