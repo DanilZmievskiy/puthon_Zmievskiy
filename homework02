@@ -118,7 +118,7 @@ def find_possible_values(grid: list, pos: tuple) -> set:
     return a - b - c - d
 
 
-def solve(grid: list) -> any[list[list[str]], None]:
+def solve(grid: list) -> list:
     """ Решение пазла, заданного в grid """
     """ Как решать Судоку?
         1. Найти свободную позицию
