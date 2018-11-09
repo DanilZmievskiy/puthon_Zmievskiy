@@ -52,7 +52,7 @@ def get_col(values: list, pos: tuple) -> list:
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
-    return [i[pos[1]] for i in values]
+    return [col[pos[1]] for col in values]
 
 
 
@@ -71,8 +71,8 @@ def get_block(values: list, pos: tuple) -> list:
     row = row // 3
     col = col // 3
     total = []
-    for i in values[row * 3: row * 3 + 3]:
-        total += i[col * 3: col * 3 + 3]
+    for num in values[row * 3: row * 3 + 3]:
+        total += num[col * 3: col * 3 + 3]
     return total
 
 
@@ -87,10 +87,10 @@ def find_empty_positions(grid: list):
     (2, 0)
     """
     row = 0
-    for i in grid:
+    for roll in grid:
         col = 0
-        for j in i:
-            if j == '.':
+        for num in roll:
+            if num == '.':
                 return row, col
             else:
                 col += 1
@@ -133,8 +133,8 @@ def solve(grid: list) -> list:
     empty = find_empty_positions(grid)
     if not empty: return grid
     row, col = empty
-    for i in find_possible_values(grid, empty):
-        grid[row][col] = i
+    for num in find_possible_values(grid, empty):
+        grid[row][col] = num
         solution = solve(grid)
         if solution:
             return solution
@@ -145,15 +145,15 @@ def solve(grid: list) -> list:
 def check_solution(solution: list) -> bool:
     """ Если решение solution верно, то вернуть True, в противном случае False """
     # TODO: Add doctests with bad puzzles
-    for i in solution:
-        if {i} != {'123456789'}:
+    for roll in solution:
+        if {roll} != {'123456789'}:
             return False
-    for j in range(len(solution)):
-        if {get_col(solution, (0, j))} != {'123456789'}:
+    for num in range(len(solution)):
+        if {get_col(solution, (0, num))} != {'123456789'}:
             return False
-    for i in range(0, 8):
-        for j in range(0, 8):
-            pos = (i, j)
+    for tally in range(0, 8):
+        for num in range(0, 8):
+            pos = (tally, num)
             if {get_block(solution, pos)} != {'123456789'}:
                 return False
     return True
@@ -181,14 +181,14 @@ def generate_sudoku(N: int) -> list:
     >>> check_solution(solution)
     True
     """
-    a = 81 - N
+    ridt = 81 - N
     mtt = [['.'] * 9 for _ in range(9)]
     mtt = solve(mtt)
-    while a > 0:
+    while ridt > 0:
         row, col = random.randint(0, 8), random.randint(0, 8)
         if mtt[row][col] != '.':
             mtt[row][col] = '.'
-            a -= 1
+            ridt -= 1
     return mtt
 
 
