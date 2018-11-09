@@ -86,17 +86,11 @@ def find_empty_positions(grid: list):
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    row = 0
-    for roll in grid:
-        col = 0
-        for num in roll:
-            if num == '.':
-                return row, col
-            else:
-                col += 1
-        row += 1
-        return row, col
-    return None
+   for row, values in enumerate(grid):
+    for col, nums in enumerate(values):
+        if nums == '.':
+            return row, col
+   return None
 
 
 def find_possible_values(grid: list, pos: tuple) -> set:
