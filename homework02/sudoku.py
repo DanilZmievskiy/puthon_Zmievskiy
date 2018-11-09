@@ -104,11 +104,11 @@ def find_possible_values(grid: list, pos: tuple) -> set:
     >>> values == {'2', '5', '9'}
     True
     """
-    a = set('123456789')
-    b = set(get_row(grid, pos))
-    c = set(get_col(grid, pos))
-    d = set(get_block(grid, pos))
-    return a - b - c - d
+    possible = set('123456789')
+    all_row = set(get_row(grid, pos))
+    all_col = set(get_col(grid, pos))
+    all_block = set(get_block(grid, pos))
+    return possible - all_row - all_col - all_block
 
 
 def solve(grid: list) -> list:
