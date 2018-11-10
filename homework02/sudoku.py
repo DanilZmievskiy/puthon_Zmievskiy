@@ -139,16 +139,16 @@ def solve(grid: list) -> list:
 def check_solution(solution: list) -> bool:
     """ Если решение solution верно, то вернуть True, в противном случае False """
     # TODO: Add doctests with bad puzzles
-    for roll in solution:
-        if {roll} != {'123456789'}:
+    for row in solution:
+        if set(row) != set('123456789'):
             return False
-    for num in range(len(solution)):
-        if {get_col(solution, (0, num))} != {'123456789'}:
+    for col in range(len(solution)):
+        if set(get_col(solution, (0, col))) != set('123456789'):
             return False
-    for tally in range(0, 8):
-        for num in range(0, 8):
-            pos = (tally, num)
-            if {get_block(solution, pos)} != {'123456789'}:
+    for row, values in enumerate(solution):
+        for col, nums in enumerate(values):
+            pos = (row, col)
+            if set(get_block(solution, pos)) != set('123456789'):
                 return False
     return True
 
