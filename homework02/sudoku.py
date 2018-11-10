@@ -76,7 +76,7 @@ def get_block(values: list, pos: tuple) -> list:
     return total
 
 
-def find_empty_positions(grid: list):
+def find_empty_positions(grid: list) -> tuple:
     """ Найти первую свободную позицию в пазле """
     """
     >>> find_empty_positions([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']])
