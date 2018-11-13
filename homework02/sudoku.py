@@ -1,4 +1,5 @@
 import random
+from typing import Any
 
 def read_sudoku(filename: str) -> list:
     """ Прочитать Судоку из указанного файла """
@@ -76,7 +77,7 @@ def get_block(values: list, pos: tuple) -> list:
     return total
 
 
-def find_empty_positions(grid: list) -> tuple:
+def find_empty_positions(grid: list) -> Any[Tuple, None]:
     """ Найти первую свободную позицию в пазле """
     """
     >>> find_empty_positions([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']])
@@ -111,7 +112,7 @@ def find_possible_values(grid: list, pos: tuple) -> set:
     return possible - all_row - all_col - all_block
 
 
-def solve(grid: list) -> list:
+def solve(grid: list) -> Any[list, None]
     """ Решение пазла, заданного в grid """
     """ Как решать Судоку?
         1. Найти свободную позицию
