@@ -1,6 +1,7 @@
 import random
 from typing import Any
 
+
 def read_sudoku(filename: str) -> list:
     """ Прочитать Судоку из указанного файла """
     digits = [c for c in open(filename).read() if c in '123456789.']
@@ -30,6 +31,7 @@ def group(values: list, n: int) -> list:
     grp = [values[x: x + n] for x in range(0, len(values), n)]
     return grp
 
+
 def get_row(values: list, pos: tuple) -> list:
     """ Возвращает все значения для номера строки, указанной в pos """
     """
@@ -54,7 +56,6 @@ def get_col(values: list, pos: tuple) -> list:
     ['3', '6', '9']
     """
     return [col[pos[1]] for col in values]
-
 
 
 def get_block(values: list, pos: tuple) -> list:
@@ -87,11 +88,11 @@ def find_empty_positions(grid: list) -> Any[Tuple, None]:
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-   for row, values in enumerate(grid):
-    for col, nums in enumerate(values):
-        if nums == '.':
-            return row, col
-   return None
+    for row, values in enumerate(grid):
+        for col, nums in enumerate(values):
+            if nums == '.':
+                return row, col
+    return None
 
 
 def find_possible_values(grid: list, pos: tuple) -> set:
@@ -120,13 +121,13 @@ def solve(grid: list) -> Any[list, None]
         3. Для каждого возможного значения:
             3.1. Поместить это значение на эту позицию
             3.2. Продолжить решать оставшуюся часть пазла
-
     >>> grid = read_sudoku('puzzle1.txt')
     >>> solve(grid)
     [['5', '3', '4', '6', '7', '8', '9', '1', '2'], ['6', '7', '2', '1', '9', '5', '3', '4', '8'], ['1', '9', '8', '3', '4', '2', '5', '6', '7'], ['8', '5', '9', '7', '6', '1', '4', '2', '3'], ['4', '2', '6', '8', '5', '3', '7', '9', '1'], ['7', '1', '3', '9', '2', '4', '8', '5', '6'], ['9', '6', '1', '5', '3', '7', '2', '8', '4'], ['2', '8', '7', '4', '1', '9', '6', '3', '5'], ['3', '4', '5', '2', '8', '6', '1', '7', '9']]
     """
     empty = find_empty_positions(grid)
-    if not empty: return grid
+    if not empty:
+        return grid
     row, col = empty
     for num in find_possible_values(grid, empty):
         grid[row][col] = num
