@@ -179,7 +179,7 @@ def generate_sudoku(N: int) -> list:
     N = 81 - N
     grid = [['.'] * 9 for _ in range(9)]
     grid = solve(grid)
-    while ridt > 0:
+    while N > 0:
         row, col = random.randint(0, 8), random.randint(0, 8)
         if grid[row][col] != '.':
             grid[row][col] = '.'
