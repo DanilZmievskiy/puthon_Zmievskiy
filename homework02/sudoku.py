@@ -78,7 +78,7 @@ def get_block(values: list, pos: tuple) -> list:
     return total
 
 
-def find_empty_positions(grid: list) -> Any[tuple, None]:
+def find_empty_positions(grid: list) -> Union[tuple, None]:
     """ Найти первую свободную позицию в пазле """
     """
     >>> find_empty_positions([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']])
@@ -113,7 +113,7 @@ def find_possible_values(grid: list, pos: tuple) -> set:
     return possible - all_row - all_col - all_block
 
 
-def solve(grid: list) -> Any[list, None]:
+def solve(grid: list) -> Union[list, None]:
     """ Решение пазла, заданного в grid """
     """ Как решать Судоку?
         1. Найти свободную позицию
@@ -176,15 +176,15 @@ def generate_sudoku(N: int) -> list:
     >>> check_solution(solution)
     True
     """
-    ridt = 81 - N
-    mtt = [['.'] * 9 for _ in range(9)]
-    mtt = solve(mtt)
+    N = 81 - N
+    grid = [['.'] * 9 for _ in range(9)]
+    grid = solve(grid)
     while ridt > 0:
         row, col = random.randint(0, 8), random.randint(0, 8)
-        if mtt[row][col] != '.':
-            mtt[row][col] = '.'
-            ridt -= 1
-    return mtt
+        if grid[row][col] != '.':
+            grid[row][col] = '.'
+            N -= 1
+    return grid
 
 
 if __name__ == '__main__':
